@@ -12900,6 +12900,21 @@ textarea.form-control-lg {
 
   .d-print-none {
     display: none !important; } }
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  /* 1 */
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  /* 2 */
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important; }
+
 *,
 ::before,
 ::after {
@@ -12928,7 +12943,7 @@ main {
     margin: 0; }
     main .container .row .height56 {
       max-height: 56px; }
-    main .container .row h1, main .container .row .h1 {
+    main .container .row h2, main .container .row .h2 {
       font-size: inherit; }
     main .container .row .opacity50 {
       opacity: 0.5; }
