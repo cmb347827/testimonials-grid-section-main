@@ -1,0 +1,197 @@
+
+@import 'custom.scss';
+@import '_globals.scss';
+
+$children: first,second,third,fourth;
+
+$colors: (
+   Moderate violet: hsl(263, 55%, 52%),
+   Very dark grayish blue: hsl(217, 19%, 35%),
+   Very dark blackish blue: hsl(219, 29%, 14%),
+   White: hsl(0, 0%, 100%),
+   Light gray: hsl(0, 0%, 81%),
+   Light grayish blue: hsl(210, 46%, 95%),
+);
+$fallback-colors: (
+   #6600FF #666699 #000033 #FFFFFF #CCCCFF #99CCCC
+);
+
+@mixin background($url,$position:auto,$size:auto,$repeat:no-repeat,$fixed:fixed,$color:white){
+    background: url($url) $position/$size $repeat $fixed $color; 
+}
+@mixin font-color($color, $fallback-color) {
+  color: $fallback-color;
+  color: $color;
+}
+
+@mixin bg-color($color, $fallback-color) {
+  background-color: $fallback-color;
+  background-color: $color;
+}
+
+@mixin width($grid-size) {
+  width: $grid-size * 1px;
+}
+@mixin max-width($grid-size) {
+  max-width: $grid-size * 1px;
+}
+@mixin min-width($grid-size) {
+  min-width: $grid-size * 1px;
+}
+@mixin border-radius($radius...) {
+  border-radius: $radius;
+}
+@mixin margin($args...) {
+  margin: $args;
+}
+@mixin padding($args...) {
+  padding: $args;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  @include bg-color(map-get($colors,Light grayish blue),nth($fallback-colors,6));
+  font{
+     size: $font_size-13;
+     weight: $font_weight-normal;
+  }
+}
+
+main {
+    @include width($container__form-xs);
+	height:100%;
+	display:grid;
+	@include margin(100px auto);
+	@include bg-color(map-get($colors,Light grayish blue),nth($fallback-colors,6));
+	.container{
+	 & .row{
+	   @include margin(0);
+	   .height56{
+	      max-height: 56px;
+	   }
+	   h1{
+	      font-size:inherit;
+	   }
+	   .opacity50{
+	      opacity:0.5;
+	   }
+	   .opacity70{
+	      opacity:0.7;
+	   }
+	   
+	  .first-row-comment{
+	     @each $child in $children {
+           &__#{$child} {
+		     height: fit-content;
+		     .card-body{
+			    height:fit-content;
+				font-family: 'Barlow Semi Condensed', sans-serif;
+			    @media screen and(min-width:$container__form-xxl * 1px){
+				   height: 500px;
+				}
+		     }
+			 @media screen and(min-width:$container__form-xxl * 1px){
+			    height: 500px;
+			 }
+           }
+         }
+	     &__first {
+		    position:relative;
+		    .card-body{
+		      @include font-color(map-get($colors,White),nth($fallback-colors,4));
+			  background: map-get($colors,Moderate violet) url(./images/bg-pattern-quotation.svg) top right/20% 10% no-repeat;
+			  @media screen and(min-width:$container__form-xxl * 1px){
+			     height: 500px;
+				 background: map-get($colors,Moderate violet) url(./images/bg-pattern-quotation.svg) top right/35% 35% no-repeat;
+			  }
+			}
+			@media screen and(min-width:$container__form-xxl * 1px){
+			  top: 10px;
+			  height:inherit;
+			}
+		 }
+	     &__second{
+		    position:relative;
+		    .card-body{
+		      @include font-color(map-get($colors,White),nth($fallback-colors,4));
+	          @include bg-color(map-get($colors,Very dark grayish blue),nth($fallback-colors,2));
+		    }
+			@media screen and(min-width:$container__form-xxl * 1px){
+			  top: 10px;
+			}
+		}
+	     &__third{
+		    position:relative;
+		    .card-body{
+		      @include font-color(map-get($colors,Very dark blackish blue),nth($fallback-colors,3));
+		    }
+			@media screen and(min-width:$container__form-xxl *1px){
+			   left:-110px;
+			   top:-490px;
+			}
+		}
+		 &__fourth{
+		    position:relative;
+		    .card-body{
+		      @include font-color(map-get($colors,White),nth($fallback-colors,4));
+		      @include bg-color(map-get($colors,Very Very dark blackish blue),nth($fallback-colors,3));
+		      @media screen and(min-width:$container__form-xxl *1px){
+			     height: 500px;
+			  }
+			}
+			@media screen and(min-width:$container__form-xxl *1px){
+			   left:-215px;
+			   top:-490px;
+			   height:500px;
+			}
+		 }
+		 &__fifth{
+		    position:relative;
+		    .card-body{
+			   @include bg-color(map-get($colors,White),nth($fallback-colors,4));
+			   @media screen and(min-width:$container__form-xxl * 1px){
+			     height: 1025px;
+			   }
+		    }
+			@media screen and(min-width:$container__form-xxl * 1px){
+			   top: 10px;
+			}
+		 }
+	  }
+	 
+	  
+	 }
+	}
+	font{
+	   size: $font_size-16 * 1.2;
+    }
+	
+    
+    @media screen and (min-width: $container__form-xxl * 1px) {
+       @include width($container__form-xxl);
+	   @include padding(50px);
+	   
+	   
+    }
+  
+}
+
+footer {
+  .attribution {
+    font-size: $font_size-8;
+    text-align: center;
+  }
+  .attribution a {
+    color: hsl(228, 45%, 44%);
+  }
+}
